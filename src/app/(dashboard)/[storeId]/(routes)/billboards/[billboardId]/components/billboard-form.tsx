@@ -9,7 +9,6 @@ import { toast } from 'react-hot-toast';
 import * as z from 'zod';
 
 import { AlertModal } from '@/components/modals/alert-modal';
-import { ApiAlert } from '@/components/ui/api-alert';
 import { Button } from '@/components/ui/button';
 import {
 	Form,
@@ -20,12 +19,11 @@ import {
 	FormMessage,
 } from '@/components/ui/form';
 import { Heading } from '@/components/ui/heading';
+import ImageUpload from '@/components/ui/image-upload';
 import { Input } from '@/components/ui/input';
 import { Separator } from '@/components/ui/separator';
-import { useOrigin } from '@/hooks/use-origin';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { Billboard } from '@prisma/client';
-import ImageUpload from '@/components/ui/image-upload';
 
 const formSchema = z.object({
 	label: z.string().min(1),
@@ -43,7 +41,6 @@ const BillboardForm: React.FC<BillboardFormProps> = ({ initialData }) => {
 	const router = useRouter();
 	const [open, setOpen] = useState(false);
 	const [loading, setLoading] = useState(false);
-	const origin = useOrigin();
 
 	const title = initialData ? 'Edit Billboard' : 'Create Billboard';
 	const description = initialData ? 'Edit a Billboard' : 'Add a new Billboard';
