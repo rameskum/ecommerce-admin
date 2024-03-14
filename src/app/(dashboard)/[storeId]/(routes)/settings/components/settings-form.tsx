@@ -26,7 +26,7 @@ import { useOrigin } from '@/hooks/use-origin';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { Store } from '@prisma/client';
 
-interface SettingfFormProps {
+interface SettingsFormProps {
 	initialData: Store;
 }
 
@@ -34,21 +34,21 @@ const formSchema = z.object({
 	name: z.string().min(1),
 });
 
-type SettingsFromValue = z.infer<typeof formSchema>;
+type SettingFromValue = z.infer<typeof formSchema>;
 
-const SettingsForm: React.FC<SettingfFormProps> = ({ initialData }) => {
+const SettingsForm: React.FC<SettingsFormProps> = ({ initialData }) => {
 	const params = useParams();
 	const router = useRouter();
 	const [open, setOpen] = useState(false);
 	const [loading, setLoading] = useState(false);
 	const origin = useOrigin();
 
-	const form = useForm<SettingsFromValue>({
+	const form = useForm<SettingFromValue>({
 		resolver: zodResolver(formSchema),
 		defaultValues: initialData,
 	});
 
-	const onSubmit = async (data: SettingsFromValue) => {
+	const onSubmit = async (data: SettingFromValue) => {
 		try {
 			setLoading(true);
 			await axios.patch(`/api/stores/${params.storeId}`, data);
