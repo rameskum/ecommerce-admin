@@ -2,12 +2,14 @@
 
 import axios from 'axios';
 import { Trash } from 'lucide-react';
-import { useParams } from 'next/navigation';
+import { useParams, useRouter } from 'next/navigation';
 import React, { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { toast } from 'react-hot-toast';
 import * as z from 'zod';
 
+import { AlertModal } from '@/components/modals/alert-modal';
+import { ApiAlert } from '@/components/ui/api-alert';
 import { Button } from '@/components/ui/button';
 import {
 	Form,
@@ -22,9 +24,7 @@ import { Input } from '@/components/ui/input';
 import { Separator } from '@/components/ui/separator';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { Store } from '@prisma/client';
-import { useRouter } from 'next/navigation';
-import { AlertModal } from '@/components/modals/alert-modal';
-import { log } from 'console';
+import { useOrigin } from '@/hooks/use-origin';
 
 interface SettingfFormProps {
 	initialData: Store;
@@ -126,6 +126,12 @@ const SettingsForm: React.FC<SettingfFormProps> = ({ initialData }) => {
 					</Button>
 				</form>
 			</Form>
+			<Separator />
+			<ApiAlert
+				title="NEXT_PUBLIC_API_URL"
+				description={`${origin}/api/${params.storeId}`}
+				varient="public"
+			/>
 		</>
 	);
 };
