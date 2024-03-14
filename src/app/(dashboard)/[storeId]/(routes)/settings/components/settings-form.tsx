@@ -22,9 +22,9 @@ import {
 import { Heading } from '@/components/ui/heading';
 import { Input } from '@/components/ui/input';
 import { Separator } from '@/components/ui/separator';
+import { useOrigin } from '@/hooks/use-origin';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { Store } from '@prisma/client';
-import { useOrigin } from '@/hooks/use-origin';
 
 interface SettingfFormProps {
 	initialData: Store;
