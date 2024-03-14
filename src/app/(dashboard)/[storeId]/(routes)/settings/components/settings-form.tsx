@@ -41,6 +41,7 @@ const SettingsForm: React.FC<SettingfFormProps> = ({ initialData }) => {
 	const router = useRouter();
 	const [open, setOpen] = useState(false);
 	const [loading, setLoading] = useState(false);
+	const origin = useOrigin();
 
 	const form = useForm<SettingsFromValue>({
 		resolver: zodResolver(formSchema),
