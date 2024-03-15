@@ -5,7 +5,7 @@ import { auth } from '@clerk/nextjs';
 
 export async function PATCH(
 	req: Request,
-	{ params }: { params: { storeId: string; categoryId: string } }
+	{ params }: { params: { storeId: string; sizeId: string } }
 ) {
 	try {
 		const { userId } = auth();
@@ -14,22 +14,22 @@ export async function PATCH(
 		}
 
 		const body = await req.json();
-		const { name, billboardId } = body;
+		const { name, value } = body;
 
 		if (!name) {
 			new NextResponse('Name is required', { status: 400 });
 		}
 
-		if (!billboardId) {
-			new NextResponse('Billboard Id is required', { status: 400 });
+		if (!value) {
+			new NextResponse('Value is required', { status: 400 });
 		}
 
 		if (!params.storeId) {
 			new NextResponse('Store Id is required', { status: 400 });
 		}
 
-		if (!params.categoryId) {
-			new NextResponse('Category Id is required', { status: 400 });
+		if (!params.sizeId) {
+			new NextResponse('Size Id is required', { status: 400 });
 		}
 
 		const storeByUserId = await prismadb.store.findFirst({
@@ -43,27 +43,27 @@ export async function PATCH(
 			return new NextResponse('Unauthorized', { status: 403 });
 		}
 
-		const category = await prismadb.category.updateMany({
+		const size = await prismadb.size.updateMany({
 			where: {
-				id: params.categoryId,
+				id: params.sizeId,
 				storeId: params.storeId,
 			},
 			data: {
 				name,
-				billboardId,
+				value,
 			},
 		});
 
-		return NextResponse.json(category);
+		return NextResponse.json(size);
 	} catch (e) {
-		console.error('[CATEGORY_PATCH]', e);
+		console.error('[SIZE_PATCH]', e);
 		return new NextResponse('Internal Server Error', { status: 500 });
 	}
 }
 
 export async function DELETE(
 	_req: Request,
-	{ params }: { params: { storeId: string; categoryId: string } }
+	{ params }: { params: { storeId: string; sizeId: string } }
 ) {
 	try {
 		const { userId } = auth();
@@ -75,8 +75,8 @@ export async function DELETE(
 			new NextResponse('Store Id is required', { status: 400 });
 		}
 
-		if (!params.categoryId) {
-			new NextResponse('Category Id is required', { status: 400 });
+		if (!params.sizeId) {
+			new NextResponse('Size Id is required', { status: 400 });
 		}
 
 		const storeByUserId = await prismadb.store.findFirst({
@@ -90,38 +90,38 @@ export async function DELETE(
 			return new NextResponse('Unauthorized', { status: 403 });
 		}
 
-		const category = await prismadb.category.deleteMany({
+		const size = await prismadb.size.deleteMany({
 			where: {
-				id: params.categoryId,
+				id: params.sizeId,
 				storeId: params.storeId,
 			},
 		});
 
-		return NextResponse.json(category);
+		return NextResponse.json(size);
 	} catch (e) {
-		console.error('[CATEGORY_DELETE]', e);
+		console.error('[SIZE_DELETE]', e);
 		return new NextResponse('Internal Server Error', { status: 500 });
 	}
 }
 
 export async function GET(
 	_req: Request,
-	{ params }: { params: { categoryId: string } }
+	{ params }: { params: { sizeId: string } }
 ) {
 	try {
-		if (!params.categoryId) {
-			new NextResponse('Category Id is required', { status: 400 });
+		if (!params.sizeId) {
+			new NextResponse('Size Id is required', { status: 400 });
 		}
 
-		const category = await prismadb.category.findUnique({
+		const size = await prismadb.size.findUnique({
 			where: {
-				id: params.categoryId,
+				id: params.sizeId,
 			},
 		});
 
-		return NextResponse.json(category);
+		return NextResponse.json(size);
 	} catch (e) {
-		console.error('[CATEGORY_GET]', e);
+		console.error('[SIZE_GET]', e);
 		return new NextResponse('Internal Server Error', { status: 500 });
 	}
 }
