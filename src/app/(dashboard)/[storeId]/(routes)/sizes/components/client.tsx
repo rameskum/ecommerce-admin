@@ -10,7 +10,7 @@ import { DataTable } from '@/components/ui/data-table';
 import { Heading } from '@/components/ui/heading';
 import { Separator } from '@/components/ui/separator';
 
-import { SizeColumn, columns } from './columns';
+import { columns, SizeColumn } from './columns';
 
 interface SizesClientProps {
 	data: SizeColumn[];

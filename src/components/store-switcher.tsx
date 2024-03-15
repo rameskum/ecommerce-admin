@@ -1,7 +1,5 @@
 'use client';
 
-import { useStoreModal } from '@/hooks/use-store-modal';
-import { Store } from '@prisma/client';
 import {
 	Check,
 	ChevronsUpDown,
@@ -26,7 +24,9 @@ import {
 	PopoverContent,
 	PopoverTrigger,
 } from '@/components/ui/popover';
+import { useStoreModal } from '@/hooks/use-store-modal';
 import { cn } from '@/lib/utils';
+import { Store } from '@prisma/client';
 
 type PopoverTriggerProps = React.ComponentPropsWithoutRef<
 	typeof PopoverTrigger

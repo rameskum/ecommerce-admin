@@ -1,7 +1,7 @@
 'use client';
 
 import axios from 'axios';
-import { FileDiff, Trash, X } from 'lucide-react';
+import { Trash } from 'lucide-react';
 import { useParams, useRouter } from 'next/navigation';
 import React, { useState } from 'react';
 import { useForm } from 'react-hook-form';
@@ -10,6 +10,7 @@ import * as z from 'zod';
 
 import { AlertModal } from '@/components/modals/alert-modal';
 import { Button } from '@/components/ui/button';
+import { Checkbox } from '@/components/ui/checkbox';
 import {
 	Form,
 	FormControl,
@@ -22,9 +23,6 @@ import {
 import { Heading } from '@/components/ui/heading';
 import ImageUpload from '@/components/ui/image-upload';
 import { Input } from '@/components/ui/input';
-import { Separator } from '@/components/ui/separator';
-import { zodResolver } from '@hookform/resolvers/zod';
-import { Category, Color, Image, Product, Size } from '@prisma/client';
 import {
 	Select,
 	SelectContent,
@@ -32,7 +30,9 @@ import {
 	SelectTrigger,
 	SelectValue,
 } from '@/components/ui/select';
-import { Checkbox } from '@/components/ui/checkbox';
+import { Separator } from '@/components/ui/separator';
+import { zodResolver } from '@hookform/resolvers/zod';
+import { Category, Color, Image, Product, Size } from '@prisma/client';
 
 const formSchema = z.object({
 	name: z.string().min(1),
@@ -47,6 +47,11 @@ const formSchema = z.object({
 
 type ProductFormValue = z.infer<typeof formSchema>;
 
+/**
+ * Arguments for ProductForm
+ *
+ * @interface ProductFormProps
+ */
 interface ProductFormProps {
 	initialData: (Product & { images: Image[] }) | null;
 	categories: Category[];
@@ -54,6 +59,17 @@ interface ProductFormProps {
 	sizes: Size[];
 }
 
+/**
+ * Form for product
+ *
+ * @param {*} {
+ * 	initialData,
+ * 	categories,
+ * 	colors,
+ * 	sizes,
+ * }
+ * @return {*}
+ */
 const ProductForm: React.FC<ProductFormProps> = ({
 	initialData,
 	categories,
