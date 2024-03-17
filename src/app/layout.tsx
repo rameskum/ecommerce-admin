@@ -7,6 +7,7 @@ import { ToasterProvider } from '@/providers/toast-provider';
 import { ClerkProvider } from '@clerk/nextjs';
 
 import type { Metadata } from 'next';
+import { ThemeProvider } from '@/components/theme-provider';
 const inter = Inter({ subsets: ['latin'] });
 
 export const metadata: Metadata = {
@@ -23,9 +24,16 @@ export default function RootLayout({
 		<ClerkProvider>
 			<html lang="en">
 				<body className={inter.className}>
-					<ToasterProvider />
-					<ModalProvider />
-					{children}
+					<ThemeProvider
+						attribute="class"
+						defaultTheme="system"
+						enableSystem
+						disableTransitionOnChange
+					>
+						<ToasterProvider />
+						<ModalProvider />
+						{children}
+					</ThemeProvider>
 				</body>
 			</html>
 		</ClerkProvider>
