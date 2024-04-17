@@ -2,8 +2,6 @@
 
 import { ColumnDef } from '@tanstack/react-table';
 
-import CellAction from './cell-actions';
-
 export type OrderColumn = {
 	id: string;
 	phone: string;
