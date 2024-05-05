@@ -40,7 +40,7 @@ NEXT_PUBLIC_CLERK_SIGN_UP_URL=/sign-up
 NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME=cloudinary could name
 ```
 
-### Important Note:
+### Important Note
 
 Do not commit the .env.local file to your version control system.
 
@@ -52,9 +52,9 @@ Start the development server:
 pnpm dev
 ```
 
-This will start the server on http://localhost:3000 by default.
+This will start the server on <http://localhost:3000> by default.
 
-Open http://localhost:3000 in your browser to access the application.
+Open <http://localhost:3000> in your browser to access the application.
 
 ## Features
 
@@ -73,15 +73,15 @@ pnpm run build
 pnpm run start
 ```
 
-## Additional Documentations
+## Additional Documentation
 
 This README provides a general overview of the project setup and functionality.
 For detailed implementation specifics, refer to the project's codebase.
 
-Additional documentations:
+Additional documentation:
 
-Next.js: [https://nextjs.org/docs](https://nextjs.org/docs)
-Stripe: [https://docs.stripe.com/](https://docs.stripe.com/)
-Clerk: [https://clerk.com/docs](https://clerk.com/docs)
-Clodinary: [https://cloudinary.com/documentation](https://cloudinary.com/documentation)
-Neon: [https://neon.tech/docs/introduction](https://neon.tech/docs/introduction)
+- Next.js: [https://nextjs.org/docs](https://nextjs.org/docs)
+- Stripe: [https://docs.stripe.com/](https://docs.stripe.com/)
+- Clerk: [https://clerk.com/docs](https://clerk.com/docs)
+- Cloudinary: [https://cloudinary.com/documentation](https://cloudinary.com/documentation)
+- Neon: [https://neon.tech/docs/introduction](https://neon.tech/docs/introduction)
