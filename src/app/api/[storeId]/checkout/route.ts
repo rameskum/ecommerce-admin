@@ -5,7 +5,7 @@ import prismadb from '@/lib/prismadb';
 import { stripe } from '@/lib/stripe';
 
 const corsHeaders = {
-	'Access-Control-Allow-Origin': `${process.env.FRONTEND_STORE_URL!}`,
+	'Access-Control-Allow-Origin': `*`,
 	'Access-Control-Allow-Methods': '*',
 	'Access-Control-Allow-Headers': '*',
 	'Access-Control-Allow-Credentials': 'true',
