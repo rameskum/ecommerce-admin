@@ -1,13 +1,12 @@
 import { NextResponse } from 'next/server';
 import Stripe from 'stripe';
-import { headers } from 'next/headers';
 import prismadb from '@/lib/prismadb';
 import { stripe } from '@/lib/stripe';
 
 const corsHeaders = {
-	'Access-Control-Allow-Origin': `*`,
-	'Access-Control-Allow-Methods': '*',
-	'Access-Control-Allow-Headers': '*',
+	'Access-Control-Allow-Origin': `${process.env.FRONTEND_STORE_URL!}`,
+	'Access-Control-Allow-Methods': 'GET, POST, PUT, DELETE, OPTIONS',
+	'Access-Control-Allow-Headers': 'Content-Type, Authorization',
 	'Access-Control-Allow-Credentials': 'true',
 };
 
