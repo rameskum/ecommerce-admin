@@ -1,11 +1,11 @@
-import prismadb from '@/lib/prismadb';
-import { stripe } from '@/lib/stripe';
-import { headers } from 'next/headers';
 import { NextResponse } from 'next/server';
 import Stripe from 'stripe';
+import { headers } from 'next/headers';
+import prismadb from '@/lib/prismadb';
+import { stripe } from '@/lib/stripe';
 
 const corsHeaders = {
-	'Access-Control-Allow-Origin': '*',
+	'Access-Control-Allow-Origin': process.env.FRONTEND_STORE_URL!,
 	'Access-Control-Allow-Methods': 'GET, POST, PUT, DELETE, OPTIONS',
 	'Access-Control-Allow-Headers': 'Content-Type, Authorization',
 };
@@ -37,7 +37,7 @@ export async function POST(
 
 	const line_items: Stripe.Checkout.SessionCreateParams.LineItem[] = [];
 
-	products.forEach(product => {
+	products.forEach((product) => {
 		line_items.push({
 			quantity: 1,
 			price_data: {
