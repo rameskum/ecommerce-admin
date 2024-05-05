@@ -19,8 +19,6 @@ export async function POST(
 ) {
 	const { productIds } = await req.json();
 
-	console.log('productIds', productIds);
-
 	if (!productIds || productIds.length === 0)
 		return new NextResponse('Product ids are required', { status: 400 });
 
@@ -31,8 +29,6 @@ export async function POST(
 			},
 		},
 	});
-
-	console.log('products', products);
 
 	if (!products || products.length === 0) {
 		return new NextResponse('Product ids are required', { status: 400 });
@@ -53,8 +49,6 @@ export async function POST(
 		});
 	});
 
-	console.log('line_items', line_items);
-
 	const order = await prismadb.order.create({
 		data: {
 			storeId: params.storeId,
@@ -71,8 +65,6 @@ export async function POST(
 		},
 	});
 
-	console.log('order', order);
-
 	const session = await stripe.checkout.sessions.create({
 		line_items,
 		mode: 'payment',
@@ -86,8 +78,6 @@ export async function POST(
 			orderId: order.id,
 		},
 	});
-
-	console.log('session', session);
 
 	return NextResponse.json({ url: session.url }, { headers: corsHeaders });
 }
